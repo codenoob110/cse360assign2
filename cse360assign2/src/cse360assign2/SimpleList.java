@@ -6,6 +6,8 @@ import java.util.Arrays;
  * @author      Walter Ayers <wsayers1@asu.edu>
  * Class ID 433 
  * ASU ID 1214769725	
+ * 
+ * git hub url:https://github.com/codenoob110/cse360assign2
  */
 
 public class SimpleList {
