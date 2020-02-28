@@ -1,5 +1,7 @@
 package cse360assign2;
 
+import java.util.Arrays;
+
 /**
  * @author      Walter Ayers <wsayers1@asu.edu>
  * Class ID 433 
@@ -26,7 +28,7 @@ public class SimpleList {
 		   
 
 	       
-	       if(list.length  > 0 ){		// uses given constraints to initialize if conditional
+	       if(list.length  < 0 ){		// uses given constraints to initialize if conditional
 	    	   
 	           for(int a = list.length -1; a > 0; a--){		//takes the list length -1 to loop through the entire array
 	        	   
@@ -53,11 +55,19 @@ public class SimpleList {
 	    	   
 	           this.count++;
 	       
+	       if(count==list.length) {
+	    	   list = Arrays.copyOf(list,list.length+list.length*1/2);
+	    	   count++;
+	    	   
+	       }
 	   }
+	
 	  
 	   public void remove(int  component){
 	
 	       int removeItem = -1;
+	       
+	       int emptyLimit= 0;
 	       
 	       for(int a = 0 ; a < list.length; a++){   //iterate through loop 
 	    	   
@@ -67,10 +77,23 @@ public class SimpleList {
 	               
 	               this.count--;
 	               
+	               if(list[a]==0) {
+	            	   emptyLimit++;
+		        	   
+	            	   if(emptyLimit>(list.length*1/4) ) {
+	    	        	   list = Arrays.copyOf(list,list.length-1);
+	    		    	   count--;
+	    	        	  
+	    	           }
+	    	         
+		           }
+	            
+		           
+	               
 	           }
-	           
+	          
 	       }
-	       
+	   
 	       if(removeItem!=-1){		//This case is if the component is not found 
 	    	   
 	           for(int a = removeItem; a <   list.length-1; a++){		// iterate through loop
@@ -82,6 +105,7 @@ public class SimpleList {
 	           
 	           list[  list.length - 1 ] = 0;	
 	           
+	        
 	       }
 	      
 	   }
@@ -129,5 +153,28 @@ public class SimpleList {
 	       return stringers.trim();
 	       
 	   }
+	   public void append(int component) {
+		   list[list.length-1]=component;
+			
+		   
+		   
+	   }
+	   public int first() {
+		   if(list[0]==0) {
+			   return -1;
+		   }
+		   return list[0];
+		   
+	   }
+	   public int last() {
+		   if(list.length==0) {
+			   return -1;
+		   }
+		   return list[list.length-1];
+	   }
+	   public int size() {
+		   return list.length;
+	   }
+}
 	  
-	}
+	
